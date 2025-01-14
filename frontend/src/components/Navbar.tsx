@@ -1,8 +1,9 @@
+import {FC} from "react"
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { LogOut, MessageSquare, Settings, User } from "lucide-react";
 
-const Navbar = () => {
+const Navbar:FC = () => {
   const { logout, authUser } = useAuthStore();
 
   return (

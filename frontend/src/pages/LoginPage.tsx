@@ -12,7 +12,7 @@ const LoginPage = () => {
   });
   const { login, isLoggingIn } = useAuthStore();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     login(formData);
   };
