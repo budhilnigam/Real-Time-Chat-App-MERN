@@ -43,7 +43,14 @@ export const sendMessage = async (req, res) => {
 
         let imageUrl;
         if( image ){
-            const uploadResponse = await cloudinary.uploader.upload(image);
+            // Decode the Base64 Data URI
+            const matches = image.match(/^data:(.*?);base64,(.*)$/);
+            if (!matches || matches.length !== 3) {
+                return res.status(400).json({ message: "Invalid image data." });
+            }
+
+            const base64Data = matches[2];
+            const uploadResponse = await cloudinary.uploader.upload(`data:image/jpeg;base64,${base64Data}`);
             imageUrl = uploadResponse.secure_url;
         }
 
